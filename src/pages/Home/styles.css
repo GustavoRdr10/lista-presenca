@@ -30,9 +30,9 @@
 }
 .container button {
     width: 50%;
-    padding: 24px;
+    padding: 24px;    
     font-weight: 700;
-    background: #B22222	;
+    background: #B22222;
     color: #FFFFFF;
     border-radius: 5px;
     margin: 12px 0 84px;
@@ -43,4 +43,10 @@
 }
 .container button:hover {
     filter: brightness(0.9);
+}
+.validation {
+    color: red;
+}
+#clearNamesButton {
+    background-color: blue
 }

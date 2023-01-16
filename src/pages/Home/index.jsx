@@ -5,7 +5,8 @@ import { Card } from '../../components/Card';
 export function Home() {
   const [studentName, setStudentName] = useState('');
   const [students, setStudents] = useState([]);
-  const [user, setUser] = useState({name: '', avatar: ''});
+  const [user, setUser] = useState({ name: '', avatar: '' });
+  const [msg, setMsg] = useState('')
 
   function handleAddStudent() {
     const newStudent = {
@@ -23,13 +24,13 @@ export function Home() {
   useEffect(() => {
     //corpo do useEffect (ações que será executada)
     fetch('https://api.github.com/users/GustavoRdr10')
-    .then(response => response.json())
-    .then(data => {
-      setUser ({
-        name: data.name, 
-        avatar: data.avatar_url,
+      .then(response => response.json())
+      .then(data => {
+        setUser({
+          name: data.name,
+          avatar: data.avatar_url,
+        })
       })
-    })
   }, []);
 
   return (
@@ -41,12 +42,30 @@ export function Home() {
           <img src={user.avatar} alt="foto de perfil" />
         </div>
       </header>
+
       <input
         type="text"
         placeholder="Digite o nome..."
-        onChange={e => setStudentName(e.target.value)}
+        onChange={(e) => {
+          setStudentName(e.target.value)
+        }}
       />
-      <button type="button" onClick={handleAddStudent}>
+
+      <div className='row mt-3'>
+        <div className='col'>
+        </div>
+      </div><br />
+
+      <p class="validation">{msg}</p>
+
+      <button type="button"
+        onClick={(e) => {
+          if (studentName === '') {
+            setMsg('Por favor!!! Preencha um nome...')
+            return false
+          }
+          handleAddStudent();
+        }}>
         Adicionar
       </button>
       {
